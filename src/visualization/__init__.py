@@ -1,6 +1,12 @@
 """
-Visualization package for analyzing and displaying patterns and metrics.
+Visualization package for MCP (Modular Control Platform).
+Contains dashboard and pattern visualization components.
 """
 
-# Explicit package initialization
-from . import pattern_viz
+from .dashboard import main as run_dashboard
+from .pattern_viz import PatternVisualizer
+
+__all__ = [
+    'run_dashboard',
+    'PatternVisualizer',
+]
