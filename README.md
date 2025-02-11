@@ -10,6 +10,15 @@ This package provides a comprehensive set of integrated tools for the Modular Ch
 - Testing framework integration (pytest)
 - Code formatting and linting
 
+### Advanced Developer Tools
+- Multi-environment testing with Tox
+- Code coverage reporting
+- End-to-end testing with Playwright
+- Automated linting and formatting
+- Documentation generation
+- Container operations
+- Result persistence
+
 ### Computer Control Tools
 - AppleScript automation (macOS only)
 - Web search and content fetching
@@ -55,6 +64,52 @@ result = dev_tool(
     operation='edit',
     file_path='src/example.py',
     content='print("Hello, MCP!")'
+)
+```
+
+### Advanced Developer Tools
+```python
+from mcp.tools.integrated import AdvancedDeveloperTools
+
+adv_tool = AdvancedDeveloperTools()
+
+# Run multi-environment tests with Tox
+result = adv_tool(
+    operation='test',
+    test_type='tox',
+    store_results=True
+)
+
+# Run tests with coverage
+result = adv_tool(
+    operation='test',
+    test_type='coverage',
+    extra_args=['--cov-fail-under=90']
+)
+
+# Run end-to-end tests
+result = adv_tool(
+    operation='test',
+    test_type='e2e',
+    extra_args=['tests/e2e']
+)
+
+# Format and lint code
+result = adv_tool(
+    operation='lint',
+    lint_type='all'  # Runs black, flake8, and mypy
+)
+
+# Build documentation
+result = adv_tool(
+    operation='docs',
+    doc_type='sphinx'
+)
+
+# Container operations
+result = adv_tool(
+    operation='container',
+    container_op='build'
 )
 ```
 
@@ -128,6 +183,7 @@ mcp/
 │   ├── integrated/
 │   │   ├── __init__.py
 │   │   ├── dev_tools.py
+│   │   ├── advanced_dev_tools.py
 │   │   ├── system_tools.py
 │   │   ├── memory_tools.py
 │   │   └── visualization_tools.py
@@ -146,12 +202,72 @@ Each tool can be configured with custom directories for outputs and storage:
 ```python
 from pathlib import Path
 
+# Configure visualization tool
 custom_viz_dir = Path('/path/to/viz/output')
 viz_tool = VisualizationTool(output_dir=custom_viz_dir)
 
+# Configure memory tool
 custom_memory_dir = Path('/path/to/memory/storage')
 memory_tool = MemoryTool(storage_dir=custom_memory_dir)
+
+# Configure advanced development tools
+workspace_dir = Path('/path/to/workspace')
+adv_tool = AdvancedDeveloperTools(
+    workspace_root=workspace_dir,
+    memory_tool=memory_tool  # Use custom memory tool for result storage
+)
 ```
+
+## Development Workflow
+
+### Testing
+1. Run tests in multiple environments:
+   ```python
+   adv_tool(operation='test', test_type='tox')
+   ```
+
+2. Generate coverage report:
+   ```python
+   adv_tool(operation='test', test_type='coverage')
+   ```
+
+3. Run end-to-end tests:
+   ```python
+   adv_tool(operation='test', test_type='e2e')
+   ```
+
+### Code Quality
+1. Format and lint code:
+   ```python
+   adv_tool(operation='lint', lint_type='all')
+   ```
+
+2. Run specific linter:
+   ```python
+   adv_tool(operation='lint', lint_type='mypy')
+   ```
+
+### Documentation
+1. Build Sphinx documentation:
+   ```python
+   adv_tool(operation='docs', doc_type='sphinx')
+   ```
+
+2. Build MkDocs site:
+   ```python
+   adv_tool(operation='docs', doc_type='mkdocs')
+   ```
+
+### Containerization
+1. Build container:
+   ```python
+   adv_tool(operation='container', container_op='build')
+   ```
+
+2. Run tests in container:
+   ```python
+   adv_tool(operation='container', container_op='test')
+   ```
 
 ## Contributing
 
