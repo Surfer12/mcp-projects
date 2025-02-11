@@ -1,0 +1,35 @@
+[project]
+name = "cognitive-framework-mojo"
+version = "0.1.0"
+description = "Mojo implementation for the Cognitive Framework Research Project"
+repository = ""
+documentation = ""
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+
+[build]
+target-triple = "native"
+optimization-level = 3
+enable-simd = true
+enable-threads = true
+
+[dependencies]
+numpy = "^1.24"
+torch = "^2.0"
+
+[dev-dependencies]
+pytest = "^7.0"
+black = "^22.0"
+
+[test]
+test-directory = "tests"
+benchmark-directory = "benchmarks"
+
+[format]
+line-length = 88
+target-version = ["py39"]
+
+[lint]
+enable = ["style", "correctness", "performance"]
+disable = ["missing-docstring"]
+max-line-length = 88
