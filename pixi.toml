@@ -7,6 +7,7 @@ platforms = ["osx-arm64"]
 version = "0.1.0"
 
 [tasks]
+dev = "pip install -e ."
 
 [dependencies]
 max = ">=25.1.0.dev2025021016,<26"
@@ -14,4 +15,7 @@ jq = ">=1.7.1,<2"
 pip = ">=25.0.1,<26"
 anthropic = ">=0.45.2,<0.46"
 openai = ">=1.61.0,<2"
-uv = ">=0.5.29,<0.6"
+uv = ">=0.5.30,<0.6"
+typer = ">=0.15.1,<0.16"
+rich = ">=13.9.4,<14"
+requests = ">=2.32.3,<3"

@@ -1,0 +1,14 @@
+#!/usr/bin/env magic
+
+# Simple Magic test script
+@main
+fn main() -> i32:
+    print("Hello from Magic! 🪄")
+    return 0
+
+@test
+fn test_main() -> bool:
+    let result = main()
+    assert(result == 0)
+    print("Test passed! ✨")
+    return true

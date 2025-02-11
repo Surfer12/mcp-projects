@@ -1,6 +1,6 @@
 const OpenAI = require('openai');
 const Anthropic = require('@anthropic-ai/sdk');
-require('dotenv').config({ path: 'config/.env' });
+require('dotenv').config({ path: 'config/env/.env' });
 
 class AITool {
   constructor() {
