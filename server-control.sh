@@ -62,7 +62,17 @@ run_tests() {
         echo -e "Starting server first..."
         start_server
     fi
-    node test/test-endpoints.js
+    node claude-mcp-server/test/test-endpoints.js
+}
+
+# Function to display logs
+show_logs() {
+    if [ -f "./logs/server.log" ]; then
+        echo -e "${GREEN}Displaying last 50 lines of server log:${NC}"
+        tail -n 50 ./logs/server.log | GREP_COLOR='01;32' grep --color=always ''
+    else
+        echo -e "${RED}Log file not found.${NC}"
+    fi
 }
 
 # Main script logic
@@ -86,8 +96,11 @@ case "$1" in
             echo -e "${RED}Server is not running${NC}"
         fi
         ;;
+    logs)
+        show_logs
+        ;;
     *)
-        echo "Usage: $0 {start|stop|restart|test|status}"
+        echo "Usage: $0 {start|stop|restart|test|status|logs}"
         exit 1
         ;;
 esac
