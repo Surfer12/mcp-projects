@@ -27,3 +27,8 @@ logs
 Thumbs.db
 config/env/.env.example
 start-server.sh
+
+# Environment variable configuration (added by Server Configuration Merge and Standardization)
+.env
+.env.*
+!.env.example
