@@ -1,14 +1,23 @@
 const OpenAI = require('openai');
 const Anthropic = require('@anthropic-ai/sdk');
+require('dotenv').config({ path: 'config/.env' });
 
 class AITool {
   constructor() {
+    // Validate required environment variables
+    if (!process.env.OPENAI_API_KEY) {
+      throw new Error('OPENAI_API_KEY environment variable is not set');
+    }
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error('ANTHROPIC_API_KEY environment variable is not set');
+    }
+
     this.openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY || 'dummy-key'
+      apiKey: process.env.OPENAI_API_KEY
     });
 
     this.anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY || 'dummy-key'
+      apiKey: process.env.ANTHROPIC_API_KEY
     });
 
     this.defaultSystemPrompt = `[SystemPrompt]
