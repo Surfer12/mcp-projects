@@ -1,116 +1,165 @@
-# MCP (Modular Control Platform)
+# Modular Chat Platform (MCP) Integrated Tools
 
-An integrated AI and cognitive tools framework that combines multiple AI providers, web tools, and visualization capabilities.
+This package provides a comprehensive set of integrated tools for the Modular Chat Platform (MCP), combining development, system automation, memory management, and visualization capabilities.
 
 ## Features
 
-- **Integrated AI Tools**: Support for Anthropic and OpenAI models
-- **Web & API Tools**: Built-in web scraping and Google API integration
-- **Cognitive Framework**: Advanced pattern analysis and evolution capabilities
-- **Real-time Visualization**: Interactive dashboard for monitoring and analysis
-- **Meta-cognitive Capabilities**: Self-analysis and adaptation
+### Developer Tools
+- Shell command execution
+- Text editing and file management
+- Testing framework integration (pytest)
+- Code formatting and linting
+
+### Computer Control Tools
+- AppleScript automation (macOS only)
+- Web search and content fetching
+- Local caching system
+- System automation scripts
+
+### Memory Tools
+- Persistent data storage with SQLite
+- Tag-based data organization
+- Flexible data retrieval
+- Version tracking with timestamps
+
+### Visualization Tools
+- Interactive dashboards
+- Pattern visualization
+- Multiple output formats (HTML, PNG, SVG)
+- Real-time data updates
 
 ## Installation
 
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/mcp.git
-cd mcp
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-# Create and activate virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
+## Usage
 
-# Install the package
-pip install -e .[dev]
+### Developer Tools
+```python
+from mcp.tools.integrated import DeveloperTool
+
+dev_tool = DeveloperTool()
+
+# Run shell command
+result = dev_tool(
+    operation='shell',
+    command='pytest tests/'
+)
+
+# Edit file
+result = dev_tool(
+    operation='edit',
+    file_path='src/example.py',
+    content='print("Hello, MCP!")'
+)
+```
+
+### Computer Control Tools
+```python
+from mcp.tools.integrated import ComputerControlTool
+
+ctrl_tool = ComputerControlTool()
+
+# Web search
+result = ctrl_tool(
+    operation='web_search',
+    query='python async programming'
+)
+
+# Cache data
+result = ctrl_tool(
+    operation='cache',
+    cache_key='search_results',
+    cache_data=search_results
+)
+```
+
+### Memory Tools
+```python
+from mcp.tools.integrated import MemoryTool
+
+memory_tool = MemoryTool()
+
+# Store data with tags
+result = memory_tool(
+    operation='store',
+    key='user_preferences',
+    data={'theme': 'dark'},
+    tags=['settings', 'ui']
+)
+
+# Retrieve data
+result = memory_tool(
+    operation='retrieve',
+    key='user_preferences'
+)
+```
+
+### Visualization Tools
+```python
+from mcp.tools.integrated import VisualizationTool
+
+viz_tool = VisualizationTool()
+
+# Run dashboard
+result = viz_tool(
+    operation='dashboard',
+    data=dashboard_data,
+    title='MCP Analytics'
+)
+
+# Visualize pattern
+result = viz_tool(
+    operation='pattern',
+    data=pattern_data,
+    pattern_type='temporal',
+    title='Usage Patterns'
+)
+```
+
+## Directory Structure
+```
+mcp/
+├── tools/
+│   ├── integrated/
+│   │   ├── __init__.py
+│   │   ├── dev_tools.py
+│   │   ├── system_tools.py
+│   │   ├── memory_tools.py
+│   │   └── visualization_tools.py
+│   └── base.py
+├── visualization/
+│   ├── __init__.py
+│   ├── dashboard.py
+│   └── pattern_viz.py
+└── requirements.txt
 ```
 
 ## Configuration
 
-Create a `.env` file in the `config` directory:
-
-```env
-OPENAI_API_KEY=your_openai_key
-ANTHROPIC_API_KEY=your_anthropic_key
-GOOGLE_API_KEY=your_google_key
-```
-
-## Usage
-
-### Command Line Interface
-
-```bash
-# Run AI tool
-mcp ai "Your prompt here" --provider anthropic --reasoning-type analytical
-
-# Run with web search
-mcp ai "Research this topic" --web-search '{"url": "https://example.com"}'
-
-# Run visualization dashboard
-mcp dashboard --port 8501
-```
-
-### Python API
+Each tool can be configured with custom directories for outputs and storage:
 
 ```python
-from mcp.tools import IntegratedAITool
+from pathlib import Path
 
-async def main():
-    tool = IntegratedAITool()
-    try:
-        response = await tool.generateResponse({
-            'prompt': 'Your prompt',
-            'provider': 'anthropic',
-            'reasoningType': 'analytical'
-        })
-        print(f"Response: {response.text}")
-        print(f"Visualization URL: {response.visualizationUrl}")
-    finally:
-        await tool.cleanup()
+custom_viz_dir = Path('/path/to/viz/output')
+viz_tool = VisualizationTool(output_dir=custom_viz_dir)
 
-if __name__ == '__main__':
-    import asyncio
-    asyncio.run(main())
-```
-
-## Project Structure
-
-```
-mcp/
-├── src/
-│   ├── core/           # Core framework components
-│   ├── tools/          # External API integrations
-│   ├── visualization/  # Dashboard and visualizations
-│   └── cli/           # Command-line interface
-├── tests/             # Test suite
-├── examples/          # Usage examples
-├── docs/             # Documentation
-└── config/           # Configuration files
-```
-
-## Development
-
-```bash
-# Run tests
-pytest
-
-# Format code
-black src/ tests/
-
-# Type checking
-mypy src/
-
-# Lint code
-flake8 src/ tests/
+custom_memory_dir = Path('/path/to/memory/storage')
+memory_tool = MemoryTool(storage_dir=custom_memory_dir)
 ```
 
 ## Contributing
 
 1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 

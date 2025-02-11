@@ -1,0 +1,22 @@
+# Core dependencies
+anthropic>=0.7.0
+requests>=2.31.0
+
+# Testing and development
+pytest>=7.4.0
+black>=23.7.0
+flake8>=6.1.0
+mypy>=1.5.0
+
+# Data handling and visualization
+pandas>=2.0.0
+plotly>=5.18.0
+dash>=2.14.0
+
+# Async support
+aiohttp>=3.9.0
+asyncio>=3.4.3
+
+# Type checking
+types-requests>=2.31.0
+types-aiohttp>=3.9.0
