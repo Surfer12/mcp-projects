@@ -1,4 +1,3 @@
-
 # pixi environments
 .pixi
 *.egg-info
@@ -6,3 +5,23 @@
 .magic
 .env
 ecosystem.config.js
+
+# Sensitive environment files
+.env
+*.env
+!.env.example
+
+# Dependency directories
+node_modules/
+
+# Logs
+logs
+*.log
+
+# IDE specific files
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
