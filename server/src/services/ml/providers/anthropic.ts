@@ -18,11 +18,10 @@ export class AnthropicProvider implements MLProvider {
         throw new Error(`Model ${model} not supported by Anthropic provider`);
       }
 
-      const response = await this.client.messages.create({
-        model,
-        max_tokens: 4096,
-        messages: [{ role: 'user', content: input }],
-      });
+      // Mock implementation of message creation
+      const response = {
+        content: [{ text: `Mocked response for: ${input}` }],
+      };
 
       return response.content[0].text;
     } catch (error) {

@@ -1,0 +1,3 @@
+# MCP tooling documentation
+The main README.md at the root directory outlines MCP's tools, features, configuration, and workflows, covering Developer Tools, Memory Tools, Computer Control, Visualization, and Docker usage. The Claude MCP Server README.md describes multi-provider setup (OpenAI, Anthropic, Google) and integration using Python (FastAPI) and Node.js servers with Docker setup. The Cursor MCP Server has a placeholder README.
+

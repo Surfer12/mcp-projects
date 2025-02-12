@@ -1,66 +1,33 @@
 import { AnthropicProvider } from './providers/anthropic';
-import { GoogleAIProvider } from './providers/google';
+import { GoogleProvider } from './providers/google';
 import { OpenAIProvider } from './providers/openai';
 
 export interface MLProvider {
-  predict(input: string, options?: any): Promise<string>;
-  supportedModels: string[];
+    supportedModels: string[];
+    predict(input: string, options?: { model?: string }): Promise<string>;
 }
 
-class ProviderSelector {
-  private providers: Map<string, MLProvider>;
-  private defaultProvider: string;
+export class ProviderSelector {
+    private providers: Record<string, MLProvider> = {
+        anthropic: new AnthropicProvider(),
+        google: new GoogleProvider(),
+        openai: new OpenAIProvider()
+    };
 
-  constructor() {
-    this.providers = new Map();
-    this.defaultProvider = process.env.DEFAULT_AI_PROVIDER || 'anthropic';
-
-    // Initialize providers
-    this.providers.set('anthropic', new AnthropicProvider());
-    this.providers.set('openai', new OpenAIProvider());
-    this.providers.set('google', new GoogleAIProvider());
-  }
-
-  async predict(input: string, model?: string): Promise<string> {
-    try {
-      // If model is specified, find the provider that supports it
-      if (model) {
-        for (const [name, provider] of this.providers) {
-          if (provider.supportedModels.includes(model)) {
-            return provider.predict(input, { model });
-          }
+    getProvider(providerName: string): MLProvider {
+        const provider = this.providers[providerName];
+        if (!provider) {
+            throw new Error(`Provider ${providerName} not found`);
         }
-        throw new Error(`No provider found for model: ${model}`);
-      }
-
-      // Use default provider
-      const provider = this.providers.get(this.defaultProvider);
-      if (!provider) {
-        throw new Error(`Default provider ${this.defaultProvider} not found`);
-      }
-
-      return provider.predict(input);
-    } catch (error) {
-      console.error('Prediction failed:', error);
-      throw new Error('Failed to generate prediction');
+        return provider;
     }
-  }
 
-  getProvider(name: string): MLProvider {
-    const provider = this.providers.get(name);
-    if (!provider) {
-      throw new Error(`Provider ${name} not found`);
+    async predict(
+        providerName: string, 
+        input: string, 
+        options?: { model?: string }
+    ): Promise<string> {
+        const provider = this.getProvider(providerName);
+        return provider.predict(input, options);
     }
-    return provider;
-  }
-
-  getSupportedModels(): Record<string, string[]> {
-    const models: Record<string, string[]> = {};
-    for (const [name, provider] of this.providers) {
-      models[name] = provider.supportedModels;
-    }
-    return models;
-  }
 }
-
-export const providerSelector = new ProviderSelector();

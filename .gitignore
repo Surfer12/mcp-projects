@@ -32,3 +32,4 @@ start-server.sh
 .env
 .env.*
 !.env.example
+config/env/.env.example

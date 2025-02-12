@@ -1,0 +1,8 @@
+# timeline project_progress unified_server
+Timeline and milestones for unifying Claude MCP and Cursor MCP servers:
+- START: October 12, 2023, Initiation to merge AI and code-analysis features.
+- October 15-16, UnifiedAIProvider class implemented and tested in Docker.
+- October 17, Integrated static analysis from Cursor MCP's analyzers with Claude logic. Converted SonarQube static analyzer to CommonJS.
+- October 18, Planned Docker orchestration consolidation.
+- LOCATIONS: `src/unifiedAIProvider.js` for unified logic, `UNIFIED_DOCKER_PLAN.md` and `UNIFIED_README.md` for documentation.
+

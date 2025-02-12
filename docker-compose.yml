@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  claude-mcp-server:
+    build:
+      context: ./claude-mcp-server
+      dockerfile: Dockerfile
+    volumes:
+      - ./claude-mcp-server:/app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+
+  cursor-mcp-server:
+    build:
+      context: ./cursor-mcp-server
+      dockerfile: Dockerfile
+    volumes:
+      - ./cursor-mcp-server:/app
+    ports:
+      - "3100:3100"
+    environment:
+      - NODE_ENV=production

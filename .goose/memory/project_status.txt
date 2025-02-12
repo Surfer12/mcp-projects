@@ -1,0 +1,3 @@
+# MCP Claude Desktop
+Integrated custom-tools server with generate_sum, analyze_text, and list_files tools into Claude Desktop. Restored previously missing GitHub, fetch, filesystem, memory, and other integrations in the Claude Desktop configuration.
+

@@ -1,0 +1,3 @@
+# Claude MCP Cursor MCP unified server
+We plan to unify claude-mcp-server and cursor-mcp-server into a single Docker-based server solution for usage across multiple apps. Steps include: analyzing `src` and `packages` directories for overlaps, inspecting Docker setups (`docker-compose.yml` and `docker` directories), and documenting integration requirements.
+
